@@ -46,3 +46,10 @@ def todo_list_update(request, id):
         "todo_list" : todo_list,
     }
     return render(request, "todos/update.html", context)
+
+def todo_list_delete(request, id):
+  list = TodoList.objects.get(id=id)
+  if request.method == "POST":
+    list.delete()
+    return redirect("todo_list_list")
+  return render(request, "todos/delete.html")

@@ -10,6 +10,11 @@
     <main>
         <div>
             <h1>{{ list.name }}</h1>
+            <div>
+                <p>
+                    <a href="{% url 'todo_list_update' list.id %}">Edit</a>
+                </p>
+            </div>
             <h2>Tasks</h2>
             <table>
                 <thead>

@@ -1,42 +1,44 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
+      <div>
+        <h1>{{ list.name }}</h1>
         <div>
-            <h1>{{ list.name }}</h1>
-            <div>
-                <p>
-                    <a href="{% url 'todo_list_update' list.id %}">Edit</a>
-                </p>
-                <p>
-                     <a href="{% url 'todo_list_delete' list.id %}">Delete</a>
-                </p>
-            </div>
-            <h2>Tasks</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Due date</th>
-                    </tr>
-                    <tbody>
-                        {% for task in list.items.all %}
-                            <tr>
-                                <td><a href="{% url 'todo_item_update' task.id %}">{{ task.task }}</a></td>
-                                <td>{{ task.due_date }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </thead>
-            </table>
+          <p>
+            <a href="{% url 'todo_list_update' list.id %}">Edit</a>
+          </p>
+          <p>
+            <a href="{% url 'todo_list_delete' list.id %}">Delete</a>
+          </p>
         </div>
+        <h2>Tasks</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Due date</th>
+            </tr>
+            <tbody>
+              {% for task in list.items.all %}
+                <tr>
+                  <td>
+                    <a href="{% url 'todo_item_update' task.id %}">{{ task.task }}</a>
+                  </td>
+                  <td>{{ task.due_date }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </thead>
+        </table>
+      </div>
     </main>
-
-</body>
+  </body>
 </html>

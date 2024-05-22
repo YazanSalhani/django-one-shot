@@ -1,41 +1,43 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
+      <div>
+        <h1>My Lists</h1>
         <div>
-            <h1>My Lists</h1>
-            <div>
-                <p>
-                    <a href="{% url 'todo_list_create' %}">Create a new list</a>
-                </p>
-                <p>
-                    <a href="{% url 'todo_item_create' %}">Create a new item</a>
-                </p>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of items</th>
-                    </tr>
-                    <tbody>
-                        {% for item in lists %}
-                            <tr>
-                                <td><a href="{% url 'todo_list_detail' item.id %}">{{ item.name }}</a></td>
-                                <td>{{ item.items.all|length }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </thead>
-            </table>
+          <p>
+            <a href="{% url 'todo_list_create' %}">Create a new list</a>
+          </p>
+          <p>
+            <a href="{% url 'todo_item_create' %}">Create a new item</a>
+          </p>
         </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Number of items</th>
+            </tr>
+            <tbody>
+              {% for item in lists %}
+                <tr>
+                  <td>
+                    <a href="{% url 'todo_list_detail' item.id %}">{{ item.name }}</a>
+                  </td>
+                  <td>{{ item.items.all|length }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </thead>
+        </table>
+      </div>
     </main>
-
-</body>
+  </body>
 </html>
